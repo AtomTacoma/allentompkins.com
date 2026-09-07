@@ -98,6 +98,11 @@
   .about { padding: clamp(72px, 8vw, 112px) var(--gutter); display: grid; grid-template-columns: 1fr 1fr; gap: 64px; border-top: 1px solid var(--line); margin-top: 96px; }
   .about .big-copy { font-size: clamp(22px, 2.4vw, 32px); line-height: 1.25; letter-spacing: -0.02em; font-weight: 500; text-wrap: pretty; }
   .about p { margin: 0; color: var(--ink-2); }
+  .about-side { display: flex; flex-direction: column; gap: 56px; align-items: center; align-self: stretch; }
+  .about-side .eyebrow { align-self: flex-start; }
+  .avatar { width: clamp(200px, 22vw, 320px); aspect-ratio: 1; border-radius: 50%; overflow: hidden; border: 1px solid var(--line); background: var(--bg-3); box-shadow: 0 0 0 8px rgba(183,255,60,0.06); --glow: 0; transition: box-shadow 0.4s; }
+  @media (hover: hover) and (pointer: fine) { .avatar { box-shadow: 0 0 0 8px rgba(183,255,60, calc(0.06 + var(--glow) * 0.14)), 0 0 calc(12px + var(--glow) * 48px) calc(var(--glow) * 10px) rgba(183,255,60, calc(var(--glow) * 0.6)); } }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .btns { display: flex; flex-wrap: wrap; gap: 12px; font-family: var(--mono); }
   .btns a { font-size: 12px; padding: 12px 18px; border: 1px solid var(--line); color: var(--ink-2); min-height: 44px; display: inline-flex; align-items: center; }
   .btns a.primary { border-color: var(--ink); color: var(--ink); }
@@ -122,6 +127,7 @@
     .facts { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 20px; max-width: 420px; }
     .card.big { grid-column: span 6; } .card.small, .card.half { grid-column: span 3; }
     .card h3 { font-size: 18px; } .card.big h3 { font-size: 22px; }
+    .avatar { width: 180px; }
   }
   @media (max-width: 720px) {
     .nav-loc { display: none; }
@@ -130,6 +136,8 @@
     .card.small, .card.half { grid-column: span 6; min-height: 260px; }
     .card h3 { font-size: 16px; } .card.big h3 { font-size: 18px; }
     .about { grid-template-columns: 1fr; gap: 24px; margin-top: 64px; }
+    .about-side { gap: 0; }
+    .avatar { display: none; }
     .facts div { flex-direction: column; gap: 2px; }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -206,8 +214,8 @@
       <h1 class="in" style="--d: 200ms;">Weave</h1>
       <p class="lede in" style="--d: 400ms;">The Alpha of an AI-native workflow automation platform, and FigmaRN, the Claude Code skill that moved its components from Figma to engineering-ready code in hours instead of weeks.</p>
     </header>
-    <div class="cs-meta in" style="--d: 550ms;"><div><span>Client</span><b>Weave · workflow automation platform</b></div><div><span>Role</span><b>UX Designer</b></div><div><span>Timeline</span><b>Jan 2025 – Present</b></div><div><span>Tools</span><b>Figma · Claude Code · Storybook · Framer · Linear · GitHub</b></div></div>
-    <figure class="figure in" style="--d: 700ms; margin: 0;"><div class="ph hero-ph"><span>image · Weave Alpha or FigmaRN pipeline</span></div><figcaption><span>Weave Alpha</span><span>01</span></figcaption></figure>
+    <div class="cs-meta in" style="--d: 550ms;"><div><span>Client</span><b>Weave · workflow automation platform</b></div><div><span>Role</span><b>Senior UX Designer</b></div><div><span>Timeline</span><b>Jan 2025 – Present</b></div><div><span>Tools</span><b>Figma · Claude Code · Storybook · Framer · Linear · GitHub</b></div></div>
+    <figure class="figure in" style="--d: 700ms; margin: 0;"><img src="img/weave-1.jpg" alt="Weave Fabric landing page: AI is smart about everything, except you"><figcaption><span>Weave Fabric: a personal memory layer for AI</span><span>01</span></figcaption></figure>
     <section class="cs-section reveal"><div class="label">Overview</div><div class="body"><p class="lead">A small team building an AI-native product, where the slowest step was not deciding what to build but getting finished components out of Figma and into the app.</p><p>I joined at the Alpha and worked across the seam between design and engineering: the PRD and user stories that framed the first release, the flows and wireframes behind it, and then the tooling and process that let design hand off production-ready components instead of pictures of them.</p></div></section>
     <section class="cs-section reveal"><div class="label">What I did</div><div class="body"><ul><li>Authored the PRD, initial user stories, and Figma wireframes for the Weave Alpha, plus user flow charts for each thread type and for marketing.</li><li>Built FigmaRN, a custom Claude Code skill that converts Figma components into React Native code, opens a GitHub pull request, and writes handoff content into the Linear issue; ran first-pass code reviews with Gemini.</li><li>Documented repeatable processes for component production in Claude Code, including skill building and code lessons, so design and engineering share one pipeline.</li><li>Established a Storybook workflow with engineering for publishing, organizing, and documenting the functionality and usage of finalized React Native components.</li><li>Run QA on components in the live application, logging functional and UI bugs; corrected UI and UX issues in Fabric, the memory app being merged into Weave.</li><li>Partnered with the design team on Tally, a financial-help web application designed in Figma and produced in Framer, including Framer's CMS.</li></ul></div></section>
     <section class="cs-section reveal"><div class="label">Outcome</div><div class="body"><p class="lead">Design-to-code turnaround went from weeks to hours, with a reviewable pull request and a Linear handoff produced from the Figma component itself.</p><p class="todo">[Add a number if you have one: components shipped through FigmaRN, screens in the Alpha, engineers using the Storybook flow.]</p></div></section>
@@ -302,6 +310,16 @@
     addEventListener('keydown', e => { if (e.key === 'Escape' && rMenu.classList.contains('open')) setR(false); });
     addEventListener('resize', placeR, { passive: true }); addEventListener('scroll', placeR, { passive: true });
     rMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setTimeout(() => { rMenu.classList.remove('open'); rTriggers.forEach(t => t.setAttribute('aria-expanded', 'false')); rOwner = null; }, 150)));
+  }
+
+  // ----- avatar glow: brighter the closer the cursor gets -----
+  const av = document.querySelector('.avatar');
+  if (av && fine && !reduce) {
+    addEventListener('pointermove', e => {
+      const r = av.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+      const d = Math.max(0, Math.hypot(e.clientX - cx, e.clientY - cy) - r.width / 2), R = 420;
+      av.style.setProperty('--glow', (d > R ? 0 : 1 - d / R).toFixed(3));
+    }, { passive: true });
   }
 
   // ----- liquid dot field -----
