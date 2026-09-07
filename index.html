@@ -98,13 +98,16 @@
   .about { padding: clamp(72px, 8vw, 112px) var(--gutter); display: grid; grid-template-columns: 1fr 1fr; gap: 64px; border-top: 1px solid var(--line); margin-top: 96px; }
   .about .big-copy { font-size: clamp(22px, 2.4vw, 32px); line-height: 1.25; letter-spacing: -0.02em; font-weight: 500; text-wrap: pretty; }
   .about p { margin: 0; color: var(--ink-2); }
+  .about-side { display: flex; flex-direction: column; gap: 40px; align-items: center; align-self: center; }
+  .about-side .eyebrow { align-self: flex-start; }
+  .avatar { width: clamp(160px, 16vw, 240px); aspect-ratio: 1; border-radius: 50%; overflow: hidden; border: 1px solid var(--line); background: var(--bg-3); box-shadow: 0 0 0 8px rgba(183,255,60,0.06); }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .btns { display: flex; flex-wrap: wrap; gap: 12px; font-family: var(--mono); }
   .btns a { font-size: 12px; padding: 12px 18px; border: 1px solid var(--line); color: var(--ink-2); min-height: 44px; display: inline-flex; align-items: center; }
   .btns a.primary { border-color: var(--ink); color: var(--ink); }
   .btns button.primary { font-family: var(--mono); font-size: 12px; padding: 12px 18px; border: 1px solid var(--ink); background: none; color: var(--ink); min-height: 44px; cursor: pointer; letter-spacing: 0.06em; }
-  .btns button.primary:hover, .btns button.primary[aria-expanded="true"] { border-color: var(--accent); color: var(--accent); }
-  .resume-wrap { position: relative; }
-  .resume-menu { position: absolute; left: 0; top: calc(100% + 8px); min-width: 220px; background: var(--bg-2); border: 1px solid var(--line); padding: 6px; display: flex; flex-direction: column; gap: 2px; z-index: 6; opacity: 0; transform: translateY(-6px); visibility: hidden; transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s; }
+  .btns button.primary:hover, .btns button.primary[aria-expanded="true"], .nav-links a[aria-expanded="true"], .menu a[aria-expanded="true"] { border-color: var(--accent); color: var(--accent); }
+  .resume-menu { position: fixed; left: 0; top: 0; min-width: 220px; background: var(--bg-2); border: 1px solid var(--line); padding: 6px; display: flex; flex-direction: column; gap: 2px; z-index: 14; opacity: 0; transform: translateY(-6px); visibility: hidden; transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s; }
   .resume-menu.open { opacity: 1; transform: none; visibility: visible; transition-delay: 0s; }
   .resume-menu a { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 12px 14px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); border: 0; min-height: 44px; }
   .resume-menu a:hover, .resume-menu a:focus-visible { background: var(--bg-3); color: var(--accent); }
@@ -131,6 +134,8 @@
     .card.small, .card.half { grid-column: span 6; min-height: 260px; }
     .card h3 { font-size: 16px; } .card.big h3 { font-size: 18px; }
     .about { grid-template-columns: 1fr; gap: 24px; margin-top: 64px; }
+    .about-side { align-items: flex-start; gap: 24px; }
+    .avatar { width: 140px; }
     .facts div { flex-direction: column; gap: 2px; }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -153,12 +158,16 @@
       <svg viewBox="0 0 38.324 28" role="img" aria-hidden="true"><path fill="#b7ff3c" d="M 0.480 25.969 L 13.449 0.770 C 13.691 0.297 14.184 0.000 14.723 0.000 L 36.898 0.000 C 37.684 0.000 38.324 0.625 38.324 1.398 L 38.324 7.805 C 38.324 8.578 37.684 9.207 36.898 9.207 L 32.250 9.207 C 31.461 9.207 30.824 9.832 30.824 10.605 L 30.824 26.602 C 30.824 27.375 30.184 28.000 29.395 28.000 L 21.391 28.000 C 20.605 28.000 19.965 27.375 19.965 26.602 L 19.965 18.285 C 19.965 16.801 17.926 16.336 17.258 17.664 L 12.461 27.219 C 12.219 27.699 11.723 28.000 11.180 28.000 L 1.750 28.000 C 0.684 28.000 -0.004 26.895 0.480 25.969 Z"/></svg>
       <span>Allen Tompkins</span>
     </a>
-    <div class="nav-links"><a href="#top">Home</a><a href="#work">Work</a><a href="#about">About</a><a href="resume.pdf" target="_blank" rel="noopener">Resume</a><a href="#about">Contact</a></div>
+    <div class="nav-links"><a href="#top">Home</a><a href="#work">Work</a><a href="#about">About</a><a href="resume.pdf" data-resume aria-haspopup="menu" aria-expanded="false" aria-controls="resume-menu">Resume</a><a href="#about">Contact</a></div>
     <div class="nav-loc">Tacoma, WA — 47.25°N</div>
     <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
   </nav>
+  <div class="resume-menu" id="resume-menu" role="menu" aria-label="Resume">
+    <a href="resume.pdf" target="_blank" rel="noopener" role="menuitem"><span>View in new tab</span><span>PDF</span></a>
+    <a href="resume.pdf" download="Allen Tompkins Resume.pdf" role="menuitem"><span>Download</span><span>PDF</span></a>
+  </div>
   <div class="menu" id="menu" aria-hidden="true">
-    <a href="#top" style="--i:0">Home</a><a href="#work" style="--i:1">Work</a><a href="#about" style="--i:2">About</a><a href="resume.pdf" target="_blank" rel="noopener" style="--i:3">Resume</a><a href="#about" style="--i:4">Contact</a>
+    <a href="#top" style="--i:0">Home</a><a href="#work" style="--i:1">Work</a><a href="#about" style="--i:2">About</a><a href="resume.pdf" data-resume aria-haspopup="menu" aria-expanded="false" aria-controls="resume-menu" style="--i:3">Resume</a><a href="#about" style="--i:4">Contact</a>
     <div class="menu-foot">Tacoma, WA — 47.25°N</div>
   </div>
 
@@ -212,15 +221,14 @@
     </section>
 
     <section class="about" id="about">
-      <div class="eyebrow reveal" style="color: var(--ink-2);">02 — About</div>
+      <div class="about-side">
+        <div class="eyebrow reveal" style="color: var(--ink-2);">02 — About</div>
+        <div class="avatar reveal" style="--d: 150ms;"><img src="img/profile.jpg" alt="Allen Tompkins" width="480" height="480"></div>
+      </div>
       <div class="stack" style="gap: 24px;">
         <div class="big-copy reveal">Ten years at Microsoft and Apple taught me systems. A startup taught me to ship them. I work in the seam between design and engineering: PRDs, flows, components, Storybook, and the Claude Code skills that connect them.</div>
         <p class="reveal" style="--d: 120ms;">After dark I produce industrial electronic music as <a href="https://neurogeist.bandcamp.com/" target="_blank" rel="noopener" style="border-bottom: 1px solid var(--ink-3);">Neurogeist</a>. Same discipline, different BPM.</p>
-        <div class="btns reveal" style="--d: 220ms;"><div class="resume-wrap"><button type="button" class="primary" id="resume-btn" aria-haspopup="menu" aria-expanded="false" aria-controls="resume-menu">RESUME.PDF</button>
-          <div class="resume-menu" id="resume-menu" role="menu" aria-label="Resume">
-            <a href="resume.pdf" target="_blank" rel="noopener" role="menuitem"><span>View in new tab</span><span>PDF</span></a>
-            <a href="resume.pdf" download="Allen Tompkins Resume.pdf" role="menuitem"><span>Download</span><span>57 KB</span></a>
-          </div></div><a href="https://www.linkedin.com/in/allentompkins" target="_blank" rel="noopener">LINKEDIN</a><a href="mailto:atom206nw@gmail.com">EMAIL</a></div>
+        <div class="btns reveal" style="--d: 220ms;"><button type="button" class="primary" data-resume aria-haspopup="menu" aria-expanded="false" aria-controls="resume-menu">RESUME.PDF</button><a href="https://www.linkedin.com/in/allentompkins" target="_blank" rel="noopener">LINKEDIN</a><a href="mailto:atom206nw@gmail.com?subject=Hello%20from%20allentompkins.com&body=Hi%20Allen%2C%0A%0A">EMAIL</a></div>
       </div>
     </section>
   </main>
@@ -270,7 +278,7 @@
     if (open) menu.querySelector('a').focus(); else burger.focus();
   }
   burger.addEventListener('click', () => setMenu(!document.body.classList.contains('menu-open')));
-  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  menu.querySelectorAll('a:not([data-resume])').forEach(a => a.addEventListener('click', () => setMenu(false)));
   addEventListener('keydown', e => { if (e.key === 'Escape' && document.body.classList.contains('menu-open')) setMenu(false); });
   addEventListener('resize', () => { if (innerWidth > 720 && document.body.classList.contains('menu-open')) setMenu(false); }, { passive: true });
 
@@ -291,14 +299,29 @@
     }, { passive: true });
   }
 
-  // ----- resume menu -----
-  const rBtn = document.getElementById('resume-btn'), rMenu = document.getElementById('resume-menu');
-  if (rBtn && rMenu) {
-    const setR = (open) => { rMenu.classList.toggle('open', open); rBtn.setAttribute('aria-expanded', open); if (open) rMenu.querySelector('a').focus(); };
-    rBtn.addEventListener('click', () => setR(!rMenu.classList.contains('open')));
-    addEventListener('click', e => { if (!rBtn.contains(e.target) && !rMenu.contains(e.target)) setR(false); });
-    addEventListener('keydown', e => { if (e.key === 'Escape' && rMenu.classList.contains('open')) { setR(false); rBtn.focus(); } });
-    rMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setTimeout(() => setR(false), 150)));
+  // ----- resume menu: one popover shared by the nav link, the mobile menu, and the About button -----
+  const rMenu = document.getElementById('resume-menu');
+  const rTriggers = [...document.querySelectorAll('[data-resume]')];
+  let rOwner = null;
+  function placeR() {
+    if (!rOwner) return;
+    const t = rOwner.getBoundingClientRect(), w = rMenu.offsetWidth, h = rMenu.offsetHeight;
+    let left = Math.min(Math.max(8, t.left), innerWidth - w - 8);
+    let top = t.bottom + 8; if (top + h > innerHeight - 8) top = t.top - h - 8;
+    rMenu.style.left = left + 'px'; rMenu.style.top = top + 'px';
+  }
+  function setR(open, owner) {
+    if (open) { rOwner = owner; placeR(); }
+    rMenu.classList.toggle('open', open);
+    rTriggers.forEach(t => t.setAttribute('aria-expanded', open && t === rOwner));
+    if (open) rMenu.querySelector('a').focus(); else if (rOwner) { rOwner.focus(); rOwner = null; }
+  }
+  if (rMenu && rTriggers.length) {
+    rTriggers.forEach(t => t.addEventListener('click', e => { e.preventDefault(); const isOpen = rMenu.classList.contains('open') && rOwner === t; setR(!isOpen, t); }));
+    addEventListener('click', e => { if (rMenu.classList.contains('open') && !rMenu.contains(e.target) && !rTriggers.some(t => t.contains(e.target))) setR(false); });
+    addEventListener('keydown', e => { if (e.key === 'Escape' && rMenu.classList.contains('open')) setR(false); });
+    addEventListener('resize', placeR, { passive: true }); addEventListener('scroll', placeR, { passive: true });
+    rMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setTimeout(() => { rMenu.classList.remove('open'); rTriggers.forEach(t => t.setAttribute('aria-expanded', 'false')); rOwner = null; }, 150)));
   }
 
   // ----- liquid dot field -----
