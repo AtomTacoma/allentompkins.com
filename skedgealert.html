@@ -89,7 +89,9 @@
   .meta .hi { color: var(--accent); }
   .img { flex-grow: 1; background: var(--bg-3); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 12px; color: var(--ink-3); overflow: hidden; }
   .img > span { transition: transform 0.7s cubic-bezier(0.2,0.7,0.1,1); }
-  .card:hover .img > span { transform: scale(1.06); }
+  .img img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: transform 0.7s cubic-bezier(0.2,0.7,0.1,1); }
+  .card:hover .img > span, .card:hover .img img { transform: scale(1.06); }
+  .card .img { min-height: 180px; }
   .card h3 { margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.15; }
   .card.big h3 { font-size: 28px; line-height: 1.1; }
 
@@ -99,6 +101,14 @@
   .btns { display: flex; flex-wrap: wrap; gap: 12px; font-family: var(--mono); }
   .btns a { font-size: 12px; padding: 12px 18px; border: 1px solid var(--line); color: var(--ink-2); min-height: 44px; display: inline-flex; align-items: center; }
   .btns a.primary { border-color: var(--ink); color: var(--ink); }
+  .btns button.primary { font-family: var(--mono); font-size: 12px; padding: 12px 18px; border: 1px solid var(--ink); background: none; color: var(--ink); min-height: 44px; cursor: pointer; letter-spacing: 0.06em; }
+  .btns button.primary:hover, .btns button.primary[aria-expanded="true"] { border-color: var(--accent); color: var(--accent); }
+  .resume-wrap { position: relative; }
+  .resume-menu { position: absolute; left: 0; top: calc(100% + 8px); min-width: 220px; background: var(--bg-2); border: 1px solid var(--line); padding: 6px; display: flex; flex-direction: column; gap: 2px; z-index: 6; opacity: 0; transform: translateY(-6px); visibility: hidden; transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s; }
+  .resume-menu.open { opacity: 1; transform: none; visibility: visible; transition-delay: 0s; }
+  .resume-menu a { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 12px 14px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); border: 0; min-height: 44px; }
+  .resume-menu a:hover, .resume-menu a:focus-visible { background: var(--bg-3); color: var(--accent); }
+  .resume-menu a span:last-child { color: var(--ink-3); font-size: 11px; text-transform: none; letter-spacing: 0; }
   .btns a:hover { border-color: var(--accent); color: var(--accent); }
   .blur-band { height: 120px; margin-top: -120px; position: relative; pointer-events: none; backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); -webkit-mask: linear-gradient(to bottom, transparent, #000); mask: linear-gradient(to bottom, transparent, #000); }
   footer { padding: 24px var(--gutter); border-top: 1px solid var(--line); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); background: rgba(12,12,13,0.18); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-family: var(--mono); font-size: 12px; color: var(--ink-3); }
@@ -179,12 +189,12 @@
       <svg viewBox="0 0 38.324 28" role="img" aria-hidden="true"><path fill="#b7ff3c" d="M 0.480 25.969 L 13.449 0.770 C 13.691 0.297 14.184 0.000 14.723 0.000 L 36.898 0.000 C 37.684 0.000 38.324 0.625 38.324 1.398 L 38.324 7.805 C 38.324 8.578 37.684 9.207 36.898 9.207 L 32.250 9.207 C 31.461 9.207 30.824 9.832 30.824 10.605 L 30.824 26.602 C 30.824 27.375 30.184 28.000 29.395 28.000 L 21.391 28.000 C 20.605 28.000 19.965 27.375 19.965 26.602 L 19.965 18.285 C 19.965 16.801 17.926 16.336 17.258 17.664 L 12.461 27.219 C 12.219 27.699 11.723 28.000 11.180 28.000 L 1.750 28.000 C 0.684 28.000 -0.004 26.895 0.480 25.969 Z"/></svg>
       <span>Allen Tompkins</span>
     </a>
-    <div class="nav-links"><a href="index.html">Home</a><a href="index.html#work">Work</a><a href="index.html#about">About</a><a href="#">Resume</a><a href="index.html#about">Contact</a></div>
+    <div class="nav-links"><a href="index.html">Home</a><a href="index.html#work">Work</a><a href="index.html#about">About</a><a href="resume.pdf" target="_blank" rel="noopener">Resume</a><a href="index.html#about">Contact</a></div>
     <div class="nav-loc">Tacoma, WA — 47.25°N</div>
     <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
   </nav>
   <div class="menu" id="menu" aria-hidden="true">
-    <a href="index.html" style="--i:0">Home</a><a href="index.html#work" style="--i:1">Work</a><a href="index.html#about" style="--i:2">About</a><a href="#" style="--i:3">Resume</a><a href="index.html#about" style="--i:4">Contact</a>
+    <a href="index.html" style="--i:0">Home</a><a href="index.html#work" style="--i:1">Work</a><a href="index.html#about" style="--i:2">About</a><a href="resume.pdf" target="_blank" rel="noopener" style="--i:3">Resume</a><a href="index.html#about" style="--i:4">Contact</a>
     <div class="menu-foot">Tacoma, WA — 47.25°N</div>
   </div>
   <main id="main">
@@ -264,6 +274,16 @@
         c.style.setProperty('--near', (0.15 + near * 0.85).toFixed(3) * (near > 0 ? 1 : 0));
       }
     }, { passive: true });
+  }
+
+  // ----- resume menu -----
+  const rBtn = document.getElementById('resume-btn'), rMenu = document.getElementById('resume-menu');
+  if (rBtn && rMenu) {
+    const setR = (open) => { rMenu.classList.toggle('open', open); rBtn.setAttribute('aria-expanded', open); if (open) rMenu.querySelector('a').focus(); };
+    rBtn.addEventListener('click', () => setR(!rMenu.classList.contains('open')));
+    addEventListener('click', e => { if (!rBtn.contains(e.target) && !rMenu.contains(e.target)) setR(false); });
+    addEventListener('keydown', e => { if (e.key === 'Escape' && rMenu.classList.contains('open')) { setR(false); rBtn.focus(); } });
+    rMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setTimeout(() => setR(false), 150)));
   }
 
   // ----- liquid dot field -----
