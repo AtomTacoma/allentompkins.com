@@ -5,6 +5,7 @@ Portfolio site for Allen Tompkins. Static HTML, CSS, and vanilla JS; no build st
 - `index.html` — home
 - `weave.html`, `apple-aiml.html`, `azure-openai-studio.html`, `skedgealert.html`, `visual-studio.html`, `bing.html` — case studies
 - `img/` — case-study images
+- `lightbox.js` — image carousel; any page that includes it gets click-to-enlarge on `.figure` and `.gallery` images
 - `CNAME` — custom domain for GitHub Pages
 
 Hosted on GitHub Pages from the `main` branch, root folder.
