@@ -9,12 +9,12 @@
   const style = document.createElement('style');
   style.textContent = `
   .figure img, .gallery img { cursor: zoom-in; }
-  .lb { position: fixed; inset: 0; z-index: 40; background: rgba(0,0,0,0.74); display: flex; align-items: center; justify-content: center; padding: 32px; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0s linear 0.3s; }
+  .lb { position: fixed; inset: 0; z-index: 40; background: rgba(0,0,0,0.74); overflow-y: auto; overflow-x: hidden; padding: 32px var(--gutter, 56px) 48px; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0s linear 0.3s; -webkit-overflow-scrolling: touch; }
   .lb.open { opacity: 1; visibility: visible; transition-delay: 0s; }
-  .lb-frame { position: relative; display: inline-block; max-width: 100%; max-height: 100%; }
-  .lb-img { display: block; max-width: calc(100vw - 64px); max-height: calc(100vh - 64px); width: auto; height: auto; opacity: 0; transition: opacity 0.4s ease; }
+  .lb-frame { position: relative; width: 100%; }
+  .lb-img { display: block; width: 100%; height: auto; opacity: 0; transition: opacity 0.4s ease; }
   .lb-img.show { opacity: 1; }
-  .lb-close { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; border-radius: 50%; border: 0; padding: 0; cursor: pointer; background: rgba(0,0,0,0.6); box-shadow: 0 0 0 1.5px rgba(255,255,255,0.9), 0 2px 10px rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+  .lb-close { position: fixed; top: 44px; right: calc(var(--gutter, 56px) + 12px); width: 40px; height: 40px; border-radius: 50%; border: 0; padding: 0; cursor: pointer; background: rgba(0,0,0,0.6); box-shadow: 0 0 0 1.5px rgba(255,255,255,0.9), 0 2px 10px rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; transition: background 0.2s; z-index: 41; }
   .lb-close:hover { background: rgba(0,0,0,0.85); }
   .lb-close svg { width: 16px; height: 16px; display: block; }
   body.lb-open { overflow: hidden; }`;
@@ -33,7 +33,7 @@
     img.src = el.currentSrc || el.src; img.alt = el.alt;
     const reveal = () => requestAnimationFrame(() => img.classList.add('show'));
     if (img.complete) reveal(); else img.onload = reveal;
-    lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false'); document.body.classList.add('lb-open'); btn.focus();
+    lb.scrollTop = 0; lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false'); document.body.classList.add('lb-open'); btn.focus();
   }
   function close() {
     lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true'); document.body.classList.remove('lb-open'); img.classList.remove('show');
