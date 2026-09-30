@@ -100,8 +100,8 @@
   .about p { margin: 0; color: var(--ink-2); }
   .about-side { display: flex; flex-direction: column; gap: 56px; align-items: center; align-self: stretch; }
   .about-side .eyebrow { align-self: flex-start; }
-  .avatar { width: clamp(200px, 22vw, 320px); aspect-ratio: 1; border-radius: 50%; overflow: hidden; border: 1px solid var(--line); background: var(--bg-3); box-shadow: 0 0 0 8px rgba(183,255,60,0.06); --glow: 0; transition: box-shadow 0.4s; }
-  @media (hover: hover) and (pointer: fine) { .avatar { box-shadow: 0 0 0 8px rgba(183,255,60, calc(0.06 + var(--glow) * 0.14)), 0 0 calc(12px + var(--glow) * 48px) calc(var(--glow) * 10px) rgba(183,255,60, calc(var(--glow) * 0.6)); } }
+  .avatar { width: clamp(200px, 22vw, 320px); aspect-ratio: 1; border-radius: 50%; overflow: hidden; border: 2px solid var(--accent); background: var(--bg-3); box-shadow: none; --glow: 0; transition: box-shadow 0.4s; }
+  @media (hover: hover) and (pointer: fine) { .avatar { box-shadow: 0 0 calc(12px + var(--glow) * 48px) calc(var(--glow) * 10px) rgba(183,255,60, calc(var(--glow) * 0.6)); } }
   .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .btns { display: flex; flex-wrap: wrap; gap: 12px; font-family: var(--mono); }
   .btns a { font-size: 12px; padding: 12px 18px; border: 1px solid var(--line); color: var(--ink-2); min-height: 44px; display: inline-flex; align-items: center; }
@@ -230,7 +230,7 @@
         <div class="avatar reveal" style="--d: 150ms;"><img src="img/profile.jpg" alt="Allen Tompkins" width="480" height="480"></div>
       </div>
       <div class="stack" style="gap: 24px;">
-        <div class="big-copy reveal">Ten years at Microsoft and Apple taught me systems. A startup taught me to ship them. I work in the seam between design and engineering: PRDs, flows, components, Storybook, and the Claude Code skills that connect them.</div>
+        <div class="big-copy reveal">My years at Microsoft and Apple taught me systems. A startup taught me to ship them. I work in the seam between design and engineering: PRDs, flows, components, project management and the AI skills that connect them.</div>
         <p class="reveal" style="--d: 120ms;">After dark I produce industrial electronic music as <a href="https://neurogeist.bandcamp.com/" target="_blank" rel="noopener" style="border-bottom: 1px solid var(--ink-3);">Neurogeist</a>. Same discipline, different BPM.</p>
         <div class="btns reveal" style="--d: 220ms;"><button type="button" class="primary" data-resume aria-haspopup="menu" aria-expanded="false" aria-controls="resume-menu">RESUME.PDF</button><a href="https://www.linkedin.com/in/allentompkins" target="_blank" rel="noopener">LINKEDIN</a><a href="mailto:atom206nw@gmail.com?subject=Hello%20from%20allentompkins.com&body=Hi%20Allen%2C%0A%0A">EMAIL</a></div>
       </div>
